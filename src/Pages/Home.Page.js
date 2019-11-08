@@ -12,6 +12,8 @@ import Detail from './Detail.Page'
 import SideMenu from 'react-native-side-menu'
 
 API='a4433b1b0534ad5410c7b737b6530f47'
+apiURL= 'https://api.themoviedb.org/3'
+imgURL= 'http://image.tmdb.org/t/p/original'
 
 
 class Home extends Component  {
@@ -20,21 +22,23 @@ class Home extends Component  {
 
     this.state={
       isOpen: false,
-      itemSelected: 'Home'
+      itemSelected: 'Home',
+      Trend_list:[]
     }
   }
 
-  // componentDidMount(){
-  //   fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`)
-  //   .then(res=>res.json())
-  //   .then(data=>console.log(data))
-  // }
+componentDidMount(){
+    fetch('https://api.themoviedb.org/3/trending/movie/day?api_key=a4433b1b0534ad5410c7b737b6530f47')
+    .then(res=>res.json())
+    .then(data=>this.setState({Trend_list:data.results}))
+}
+
 
   navigationOptions = {
     header: null,  
 }
 
-  toggle=()=>{
+toggle=()=>{
         this.setState({
           isOpen:!this.state.isOpen
       })
@@ -66,8 +70,8 @@ class Home extends Component  {
         >
             <ScrollView style={[{flex: 1}, styles.container]}>
               <Header navigation={this.props.navigation} toggle={this.toggle}/>
-              <Slider/>
-              <List navigation={this.props.navigation}/>
+              <Slider  item={this.state.Trend_list}/> 
+              <List navigation={this.props.navigation} name="Trending" item={this.state.Trend_list.slice(1,9)} />
             </ScrollView>       
         </SideMenu> 
     </View>
@@ -80,7 +84,6 @@ export default Home
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    top:15,
-    backgroundColor: 'black',
+    backgroundColor:'#202328',
   },
 });

@@ -21,15 +21,15 @@ class App extends Component  {
  render(){
   return (
     <View style={{flex:1}}>
-       <StatusBar barStyle = "light-content" hidden = {false} backgroundColor = "black" translucent = {true}/>
-       <View style={{flex:1}}>
+      <View>
+        <StatusBar backgroundColor="blue"  barStyle="light-content" translucent={true} />
+      </View>
+      <View style={{flex:1}}>
           <AppContainer />
-        </View>
+      </View> 
     </View>  
   )
  }
 }
-
-
 export default App 
 

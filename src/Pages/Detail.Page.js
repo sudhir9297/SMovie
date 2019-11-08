@@ -26,12 +26,13 @@ class Detail extends Component {
         this.state = {  }
     }
     render() { 
-        //const {thumbnail}=this.props.navigation.getParam('item').details
-
+        const {item}=JSON.stringify(this.props.navigation.getParam('item', 'default value'))
+        console.log(item);
+        
         return ( 
            <View style={{flex:1}}>
                 <ScrollView style={styles.container}>
-                    <ImageBackground style={styles.thumbnail} source={require('../Image/1.jpg')}>
+                    <ImageBackground style={styles.thumbnail} source={{uri:'https://facebook.github.io/react/logo-og.png'}}>
                         <View style={styles.buttonPlay}>   
                                 <TouchableWithoutFeedback>
                                     <View>

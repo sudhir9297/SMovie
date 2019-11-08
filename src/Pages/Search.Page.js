@@ -11,43 +11,47 @@ import {
     Image
 } from 'react-native'
 
-import MovieData from '../dummyData.js'
 
 const {width, height} = Dimensions.get('window')
 import Icon from 'react-native-vector-icons/FontAwesome'
+import ItemView from '../Component/itemContainer.component'
+
+imgURL= 'http://image.tmdb.org/t/p/original'
+apiURL= 'https://api.themoviedb.org/3'
+API='a4433b1b0534ad5410c7b737b6530f47'
 
 class Search extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            text: '',
-            data: ''
+            searchInput: '',
+            movieList:[]
          }
     }
 
     clearSearch(){
-        this.setState({text:'',data:''})
+        this.setState({searchInput:'',movieList:''})
     }
 
     filter(text){
-        const data=MovieData
-        const newData=data.filter(function(item){
-            const itemData=item.name.toUpperCase()
-            const textData=text.toUpperCase()
-            return itemData.indexOf(textData)>-1
-        })
-        this.setState({
-            data:newData,
-            text:text,
-        })
+
+        fetch(`${apiURL}/search/movie?api_key=${API}&language=en-US&query=${text}&page=1&include_adult=false`)
+        .then(res=>res.json())
+        .then(data=>this.setState({movieList:data.results}))  
     }
 
     renderItem=(item)=>{
         const {navigate} = this.props.navigation
+        console.log(item.title);
+        
         return(
+            <View style={{flex:1}}>
             <TouchableWithoutFeedback onPress={() => navigate('Details', {item: item})}>
-                <Image style={{width:120,height:180}} source={{uri:item.image}}/>
+                <View>
+                  <ItemView item={item}/>
+                </View>
             </TouchableWithoutFeedback>
+        </View>
         )
     }
 
@@ -87,16 +91,15 @@ class Search extends Component {
                         </View>
                     </TouchableWithoutFeedback>
                 </View>
-                <ScrollView>
-                    <FlatList
-                        style={{marginHorizontal:5}}
-                        data={this.state.data}
-                        numColumns={3}
-                        columnWrapperStyle={{marginTop:5,marginLeft:5}}
-                        renderItem={({item})=>this.renderItem(item)}
-                        />
-                </ScrollView>
-
+                    <ScrollView>
+                        <FlatList
+                            style={{marginHorizontal:5}}
+                            data={this.state.movieList}
+                            numColumns={2}
+                            columnWrapperStyle={{margin:10}}
+                            renderItem={({item})=>this.renderItem(item)}
+                            />
+                    </ScrollView>
             </View>
          );
     }
@@ -143,11 +146,17 @@ const styles=StyleSheet.create({
     cancelButtonText: {
         color: 'white'
     },
-    image: {
-        marginRight: 5,
-        width: 115,
-        height: 170
-    }
+    title: {
+        color: 'white',
+        width:140,
+        fontSize:18,
+        fontWeight:'600'
+    },
+    ReleaseDate:{
+      color:'grey',
+      fontSize:16,
+      marginTop:3
+    },
 
 })
  

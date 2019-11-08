@@ -31,10 +31,10 @@ const Header = props => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        height: 60,
+        height: 80,
         alignItems: 'center',
         justifyContent:'space-between',
-        backgroundColor: 'black',
+        backgroundColor:'#202328',
         paddingHorizontal: 15,
         paddingTop: 10,
     },

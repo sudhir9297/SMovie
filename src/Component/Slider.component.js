@@ -8,12 +8,9 @@ import {
   Image,
   Dimensions
 } from 'react-native';
-
 import Swiper from 'react-native-swiper'
-
 const {width} = Dimensions.get('window')
 
-apiURL= 'https://api.themoviedb.org/3'
 imgURL= 'http://image.tmdb.org/t/p/original'
 
 const Slider_View=props=>(
@@ -26,12 +23,6 @@ export default class Slider extends Component {
   constructor(props){
     super(props)
     this.state={
-      ImageSlider:[
-        require('../Image/1.jpg'),
-        require('../Image/2.jpg'),
-        require('../Image/3.jpg')
-
-      ],
       Trend_list:[]
     }
   }
@@ -44,14 +35,15 @@ export default class Slider extends Component {
 
 
   render() {
-    
+    const {item} = this.props
     return (
       <View style={{flex:1}}>
         <Swiper
+          key={item.length}
           autoplay
-          height={600}
+          height={500}
         >
-          {this.state.Trend_list.slice(0,3).map((item,i)=><Slider_View item={item} key={i}/>)}
+          {item.slice(17,item.length).map((item,i)=><Slider_View item={item} key={i}/>)}
         </Swiper>
       </View>
     );
@@ -62,10 +54,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    alignItems:"center",
+    
     
   },
   image: {
-       flex:1,
-       width
+    flex:1,
+    width:"90%",
+    height:'90%',
+    borderRadius:14
     }
 });

@@ -6,58 +6,49 @@ import {
   Text,
   StyleSheet,
   FlatList,
-  Image,
   TouchableWithoutFeedback,
-  ScrollView 
+  Image,
 } from 'react-native';
 
-import MovieData from '../dummyData.js'
+import ItemView from '../Component/itemContainer.component'
 
-import Orientation from 'react-native-orientation'
 
 
 export default class List extends Component {
-  constructor(props){
-    super(props)
 
-    this.state={
-      data:MovieData
-    }
-  }
-
-
-  _renderItem=(item)=>{
+renderItem=(item)=>{
     const {navigate} = this.props.navigation
+    console.log(item.title);
     return(
-      <TouchableWithoutFeedback onPress={() => navigate('Details', {item: item})}>
-          <Image style={{width:120,height:180}} source={{uri:item.image}}/>
-      </TouchableWithoutFeedback>
-        
-      )
+        <View style={{flex:1}}>
+          <TouchableWithoutFeedback onPress={() => navigate('Details', {item: item})}>
+              <View>
+                  <ItemView item={item}/>
+              </View>
+          </TouchableWithoutFeedback>
+    </View>
+    )
   }
+ 
   render() {
+    const {navigate} = this.props.navigation
     return (
       <View style={styles.container}>
-        <View >
-          <Text style={styles.text}>My List</Text>
-              <FlatList
+        <View style={styles.textContainer}>
+            <Text style={styles.Category}>{this.props.name}</Text>
+            <Text style={styles.ViewAllTxt}>View All</Text>
+        </View>
+        <View>
+        <FlatList
                 horizontal
-                ItemSeparatorComponent={()=><View style={{width:5}}/>}
-                data={this.state.data}
-                renderItem={({item})=>this._renderItem(item)}
-                keyExtractor={item => item.key.toString()}
+                showsHorizontalScrollIndicator={false}
+                ItemSeparatorComponent={()=><View style={{width:10}}/>}
+                data={this.props.item}
+                renderItem={({item})=>this.renderItem(item)}
+                keyExtractor={item => item.id.toString()}
+
               />
-        </View>
-        <View >
-            <Text style={styles.text}>Top Pick For You</Text>
-            <FlatList
-              horizontal
-              ItemSeparatorComponent={()=><View style={{width:5}}/>}
-              data={this.state.data}
-              renderItem={({item})=>this._renderItem(item)}
-              keyExtractor={item => item.key.toString()}
-            />
-        </View>
+        </View>  
       </View>
     );
   }
@@ -66,12 +57,22 @@ export default class List extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height:"auto"
+    height:"auto",
+    marginHorizontal:10
   },
-  text: {
-       color: 'white',
-       marginTop:10,
-       fontSize:18,
+  textContainer:{
+    flexDirection:'row',
+    justifyContent:'space-between',
+    alignItems:"center",
+  },
+  Category:{
+      color: 'white',
+       marginVertical:15,
+       fontSize:22,
        fontWeight:'600'
+  },
+
+   ViewAllTxt:{
+     color:'#FFAC00',
    }
 });
