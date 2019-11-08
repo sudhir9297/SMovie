@@ -26,14 +26,14 @@ const ItemView=(items)=>{
 
 styles=StyleSheet.create({
     image:{
-        width:160,
-        height:240,
+        width:120,
+        height:200,
         borderRadius:14,
         marginHorizontal:5
     },
     title: {
         color: 'white',
-        width:160,
+        width:120,
         fontSize:18,
         fontWeight:'600'
     },
