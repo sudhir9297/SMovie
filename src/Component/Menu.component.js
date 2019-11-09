@@ -17,7 +17,7 @@ const {width, height} = Dimensions.get('window')
 class Menu extends Component {
 
     _renderItemsMenu(){
-        const genres = ["Home","Drama","Action","Fantasy","Horror","Romance","Crime","Thriller","Mystery","Science-Fiction","Comedy","Family","Music","Adventure","Espionage","Supernatural"]
+        const genres = ["Home","Now Playing","Top Rated","Popular","Upcoming"]
         const {itemSelectedValue} = this.props
         return genres.map((element, key) => (
             <TouchableHighlight 

@@ -42,15 +42,13 @@ class Search extends Component {
 
     renderItem=(item)=>{
         const {navigate} = this.props.navigation
-        console.log(item.title);
-        
         return(
             <View style={{flex:1}}>
-            <TouchableWithoutFeedback onPress={() => navigate('Details', {item: item})}>
-                <View>
-                  <ItemView item={item}/>
-                </View>
-            </TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={() => navigate('Details', {item: item})}>
+                    <View >
+                        <ItemView item={item}/>
+                    </View>
+                </TouchableWithoutFeedback>
         </View>
         )
     }
@@ -85,21 +83,29 @@ class Search extends Component {
                         />
                     </TouchableWithoutFeedback>
                     :null}
+
                     <TouchableWithoutFeedback  onPress={() => goBack()}>
-                        <View >
+                        <View style={styles.cancelContainer}>
                             <Text style={styles.cancelButtonText}>Cancel</Text>
                         </View>
                     </TouchableWithoutFeedback>
+
                 </View>
+                <View>
                     <ScrollView>
-                        <FlatList
-                            style={{marginHorizontal:5}}
-                            data={this.state.movieList}
-                            numColumns={2}
-                            columnWrapperStyle={{margin:10}}
-                            renderItem={({item})=>this.renderItem(item)}
-                            />
+                        <View >
+                            <FlatList
+                                style={{marginHorizontal:2}}
+                                data={this.state.movieList}
+                                numColumns={3}
+                                keyExtractor={(index) => index.toString()}
+                                columnWrapperStyle={{margin:5}}
+                                renderItem={({item})=>this.renderItem(item)}
+                                />
+                        </View>
                     </ScrollView>
+                </View>
+                    
             </View>
          );
     }
@@ -157,7 +163,12 @@ const styles=StyleSheet.create({
       fontSize:16,
       marginTop:3
     },
-
+    cancelContainer:{
+        width:60,
+        height:30,
+        alignItems:"center",
+        justifyContent:"center"
+    }
 })
  
 export default Search;

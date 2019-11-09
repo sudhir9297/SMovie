@@ -33,7 +33,6 @@ componentDidMount(){
     .then(data=>this.setState({Trend_list:data.results}))
 }
 
-
   navigationOptions = {
     header: null,  
 }
@@ -71,7 +70,10 @@ toggle=()=>{
             <ScrollView style={[{flex: 1}, styles.container]}>
               <Header navigation={this.props.navigation} toggle={this.toggle}/>
               <Slider  item={this.state.Trend_list}/> 
-              <List navigation={this.props.navigation} name="Trending" item={this.state.Trend_list.slice(1,9)} />
+              <List navigation={this.props.navigation} contentPath="now_playing" title="Now Playing" />
+              <List navigation={this.props.navigation} contentPath="top_rated" title="Top Rated" />
+              <List navigation={this.props.navigation} contentPath="popular" title="Popular" />
+              <List navigation={this.props.navigation} contentPath="upcoming" title="Upcoming" />
             </ScrollView>       
         </SideMenu> 
     </View>

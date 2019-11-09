@@ -12,13 +12,28 @@ import {
 
 import ItemView from '../Component/itemContainer.component'
 
-
+API='a4433b1b0534ad5410c7b737b6530f47'
+apiURL= 'https://api.themoviedb.org/3'
+imgURL= 'http://image.tmdb.org/t/p/original'
 
 export default class List extends Component {
+  constructor(props){
+    super(props)
+
+    this.state={
+      Render_list:[]
+    }
+  }
+
+componentDidMount(){
+  const {contentPath}=this.props
+  fetch(`${apiURL}/movie/${contentPath}?api_key=${API}`)
+  .then(res=>res.json())
+  .then(data=>this.setState({Render_list:data.results}))
+}
 
 renderItem=(item)=>{
     const {navigate} = this.props.navigation
-    console.log(item.title);
     return(
         <View style={{flex:1}}>
           <TouchableWithoutFeedback onPress={() => navigate('Details', {item: item})}>
@@ -28,14 +43,14 @@ renderItem=(item)=>{
           </TouchableWithoutFeedback>
     </View>
     )
-  }
+    }
  
   render() {
-    const {navigate} = this.props.navigation
+    const {title}=this.props
     return (
       <View style={styles.container}>
         <View style={styles.textContainer}>
-            <Text style={styles.Category}>{this.props.name}</Text>
+            <Text style={styles.Category}>{title}</Text>
             <Text style={styles.ViewAllTxt}>View All</Text>
         </View>
         <View>
@@ -43,7 +58,7 @@ renderItem=(item)=>{
                 horizontal
                 showsHorizontalScrollIndicator={false}
                 ItemSeparatorComponent={()=><View style={{width:10}}/>}
-                data={this.props.item}
+                data={this.state.Render_list.slice(0,9)}
                 renderItem={({item})=>this.renderItem(item)}
                 keyExtractor={item => item.id.toString()}
 

@@ -14,15 +14,20 @@ const Header = props => {
     return (
         <View style={styles.container}>
             <TouchableWithoutFeedback onPress={() => props.toggle()}>
-                <Icon name="bars"
-                        color='white'
-                        size={25}/>
+               <View style={styles.btnContainer}>
+                    <Icon name="bars"
+                                color='white'
+                                size={25}/>
+               </View>
+                
             </TouchableWithoutFeedback>
             <Text style={styles.logo}>SMOVIE</Text>
             <TouchableWithoutFeedback onPress={() => navigate('Search')}>
-                <Icon name="search"
-                        color='white'
-                        size={25}/>
+                <View style={styles.btnContainer}>
+                    <Icon name="search"
+                            color='white'
+                            size={25}/>
+                </View>
             </TouchableWithoutFeedback>
         </View>
       );
@@ -43,6 +48,12 @@ const styles = StyleSheet.create({
         fontSize:30,
         fontWeight:'800',
         height: 40
+    },
+    btnContainer:{
+        width:40,
+        justifyContent:'center',
+        alignItems:"center",
+        height:40
     }
 })
  
