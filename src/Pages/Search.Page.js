@@ -98,7 +98,7 @@ class Search extends Component {
                                 style={{marginHorizontal:2}}
                                 data={this.state.movieList}
                                 numColumns={3}
-                                keyExtractor={(index) => index.toString()}
+                                keyExtractor={(item) => item.id.toString()}
                                 columnWrapperStyle={{margin:5}}
                                 renderItem={({item})=>this.renderItem(item)}
                                 />
