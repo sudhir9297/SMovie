@@ -1,6 +1,7 @@
 import Home from '../Pages/Home.Page'
 import Details from  '../Pages/Detail.Page'
 import Search from '../Pages/Search.Page'
+import VideoPlayer from '../Pages/VideoPlayer.Page'
 
 const Route={
     Home: {
@@ -21,6 +22,13 @@ const Route={
             header: false
         })
     },
+    VideoPlayer: {
+        screen: VideoPlayer,
+        navigationOptions: ({navigation}) => ({
+            header: false
+        })
+    },
 }
+
 
 export default Route;

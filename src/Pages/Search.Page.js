@@ -14,7 +14,8 @@ import {
 
 const {width, height} = Dimensions.get('window')
 import Icon from 'react-native-vector-icons/FontAwesome'
-import ItemView from '../Component/itemContainer.component'
+// import ItemView from '../Component/itemContainer.component'
+import ListContainer from '../Component/listContainer.component'
 
 imgURL= 'http://image.tmdb.org/t/p/original'
 apiURL= 'https://api.themoviedb.org/3'
@@ -40,21 +41,22 @@ class Search extends Component {
         .then(data=>this.setState({movieList:data.results}))  
     }
 
-    renderItem=(item)=>{
-        const {navigate} = this.props.navigation
-        return(
-            <View style={{flex:1}}>
-                <TouchableWithoutFeedback onPress={() => navigate('Details', {item: item})}>
-                    <View >
-                        <ItemView item={item}/>
-                    </View>
-                </TouchableWithoutFeedback>
-        </View>
-        )
-    }
+    // renderItem=(item)=>{
+    //     const {navigate} = this.props.navigation
+    //     return(
+    //         <View style={{flex:1}}>
+    //             <TouchableWithoutFeedback onPress={() => navigate('Details', {item: item})}>
+    //                 <View >
+    //                     <ItemView item={item}/>
+    //                 </View>
+    //             </TouchableWithoutFeedback>
+    //     </View>
+    //     )
+    // }
 
     render() { 
-        const {goBack} = this.props.navigation
+        const {goBack,navigate} = this.props.navigation
+        
         return ( 
             <View style={styles.container}>
                 <View style={styles.header}>
@@ -91,20 +93,7 @@ class Search extends Component {
                     </TouchableWithoutFeedback>
 
                 </View>
-                <View>
-                    <ScrollView>
-                        <View >
-                            <FlatList
-                                style={{marginHorizontal:2}}
-                                data={this.state.movieList}
-                                numColumns={3}
-                                keyExtractor={(item) => item.id.toString()}
-                                columnWrapperStyle={{margin:5}}
-                                renderItem={({item})=>this.renderItem(item)}
-                                />
-                        </View>
-                    </ScrollView>
-                </View>
+                <ListContainer navigate={navigate} list={this.state.movieList}/>
                     
             </View>
          );
