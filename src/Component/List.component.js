@@ -7,7 +7,6 @@ import {
   StyleSheet,
   FlatList,
   TouchableWithoutFeedback,
-  Image,
 } from 'react-native';
 
 import ItemView from '../Component/itemContainer.component'
@@ -30,6 +29,7 @@ componentDidMount(){
   fetch(`${apiURL}/movie/${contentPath}?api_key=${API}`)
   .then(res=>res.json())
   .then(data=>this.setState({Render_list:data.results}))
+
 }
 
 renderItem=(item)=>{
@@ -43,15 +43,15 @@ renderItem=(item)=>{
           </TouchableWithoutFeedback>
     </View>
     )
-    }
+}
  
   render() {
-    const {title}=this.props
+    const {title,contentPath}=this.props
     return (
       <View style={styles.container}>
         <View style={styles.textContainer}>
             <Text style={styles.Category}>{title}</Text>
-            <Text style={styles.ViewAllTxt}>View All</Text>
+            <Text style={styles.ViewAllTxt} onPress={()=>this.props.navigation.navigate("ViewAll",{element:contentPath})}>View All</Text>
         </View>
         <View>
         <FlatList

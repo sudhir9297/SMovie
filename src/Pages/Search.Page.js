@@ -6,17 +6,14 @@ import {
     TouchableWithoutFeedback,
     TextInput,
     Dimensions,
-    FlatList,
-    ScrollView,
-    Image
 } from 'react-native'
-
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 const {width, height} = Dimensions.get('window')
-import Icon from 'react-native-vector-icons/FontAwesome'
-// import ItemView from '../Component/itemContainer.component'
+
 import ListContainer from '../Component/listContainer.component'
 
+//api Stuff
 imgURL= 'http://image.tmdb.org/t/p/original'
 apiURL= 'https://api.themoviedb.org/3'
 API='a4433b1b0534ad5410c7b737b6530f47'
@@ -26,37 +23,24 @@ class Search extends Component {
         super(props);
         this.state = { 
             searchInput: '',
-            movieList:[]
+            movieList:[]  //fetched list
          }
     }
 
+    //clearing the Input 
     clearSearch(){
         this.setState({searchInput:'',movieList:''})
     }
 
+    //fetching from api
     filter(text){
-
         fetch(`${apiURL}/search/movie?api_key=${API}&language=en-US&query=${text}&page=1&include_adult=false`)
         .then(res=>res.json())
         .then(data=>this.setState({movieList:data.results}))  
     }
 
-    // renderItem=(item)=>{
-    //     const {navigate} = this.props.navigation
-    //     return(
-    //         <View style={{flex:1}}>
-    //             <TouchableWithoutFeedback onPress={() => navigate('Details', {item: item})}>
-    //                 <View >
-    //                     <ItemView item={item}/>
-    //                 </View>
-    //             </TouchableWithoutFeedback>
-    //     </View>
-    //     )
-    // }
-
     render() { 
         const {goBack,navigate} = this.props.navigation
-        
         return ( 
             <View style={styles.container}>
                 <View style={styles.header}>
@@ -85,7 +69,7 @@ class Search extends Component {
                         />
                     </TouchableWithoutFeedback>
                     :null}
-
+                    
                     <TouchableWithoutFeedback  onPress={() => goBack()}>
                         <View style={styles.cancelContainer}>
                             <Text style={styles.cancelButtonText}>Cancel</Text>
@@ -94,7 +78,6 @@ class Search extends Component {
 
                 </View>
                 <ListContainer navigate={navigate} list={this.state.movieList}/>
-                    
             </View>
          );
     }

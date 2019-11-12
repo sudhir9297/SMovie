@@ -3,76 +3,27 @@ import {
     View,
     Text,
     StyleSheet,
-    Image,
-    TouchableHighlight,
-    TouchableWithoutFeedback,
     ScrollView,
-    Dimensions,
-    Share,
-    Animated,
     ImageBackground
 } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
-
 import { LinearGradient } from 'expo-linear-gradient';
 import Stars from 'react-native-stars';
 
-import Orientation from 'react-native-orientation'
-import { Logs } from 'expo';
-
+//Api stuff
 API='a4433b1b0534ad5410c7b737b6530f47'
 apiURL= 'https://api.themoviedb.org/3'
 imgURL= 'http://image.tmdb.org/t/p/original'
-
-const {width, height} = Dimensions.get('window')
-
-
-API='a4433b1b0534ad5410c7b737b6530f47'
-apiURL= 'https://api.themoviedb.org/3'
-imgURL= 'http://image.tmdb.org/t/p/original'
-
 
 class Detail extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            trailerData:[]
-
-        }
-    }
-
-    // componentDidMount(){
-    //     fetch(`${apiURL}/movie/${item.id}/videos?api_key=${API}&language=en-US`)
-    //     .then(res=>res.json())
-    //     .then(data=>this.setState({trailerData:data.results}))
-    //     console.log(this.state.trailerData);
-
-    // }
-
-        
-        //navigate('VideoPlayer')
-
-
 
     render() { 
         const item=this.props.navigation.getParam('item')
-        const {navigate} = this.props.navigation
-        
         return ( 
            <View style={{flex:1}}>
-                <ScrollView onScroll={this.handleTitleAnimation} style={styles.container}>
+                <ScrollView  style={styles.container}>
+                    <View style={{justifyContent:"center",alignItems:"center"}}>
                     <ImageBackground style={styles.thumbnail} source={{uri:`${imgURL}${item.poster_path}`}}>
-                        <View style={styles.buttonPlay}>   
-                                <TouchableWithoutFeedback onPress={()=>navigate('VideoPlayer',{items:item})}>
-                                    <View>
-                                        <Icon
-                                            name='play-circle'
-                                            size={60}
-                                            color='white'
-                                        />
-                                    </View>
-                                </TouchableWithoutFeedback>
-                        </View>   
                         <View style={styles.nameContainer} >
                                 <LinearGradient colors={['transparent','#202328', '#202328']} >
                                         <Text style={styles.title}>
@@ -81,6 +32,7 @@ class Detail extends Component {
                                 </LinearGradient>
                         </View>
                     </ImageBackground>
+                    </View>
                     <View style={styles.descContainer}>
                         <View style={styles.sub}>
                             <Text style={[styles.text]}>{item.release_date}</Text>
@@ -93,7 +45,6 @@ class Detail extends Component {
                                     emptyStar={<Icon name="star-o" style={[styles.myStarStyle, styles.myEmptyStarStyle]}/>}
                                     halfStar={<Icon name="star-half-empty" style={[styles.myStarStyle]}/>}
                                 />
-
                         </View>
                         <View style={styles.desc}>
                             <Text style={[styles.text]}>{item.overview}</Text>
@@ -113,15 +64,14 @@ const styles=StyleSheet.create({
     },
     nameContainer: {
         backgroundColor: 'transparent',
+       
+        
     },
     thumbnail: {
-        width: width,
-        height:height
-    },
-    buttonPlay:{
-        justifyContent:'center',
-        flex:1,
-        alignItems:"center"
+        width: 400,
+        height:460,
+        justifyContent:"flex-end",
+        
     },
     descContainer:{
         marginTop:5,

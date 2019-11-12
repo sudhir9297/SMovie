@@ -16,14 +16,19 @@ const {width, height} = Dimensions.get('window')
 
 class Menu extends Component {
 
+
+    gotoPath( element){
+        this.props.itemSelected(element)
+        this.props.navigation.navigate('ViewAll',{element:element.toLocaleLowerCase()})
+    }
     _renderItemsMenu(){
-        const genres = ["Home","Now Playing","Top Rated","Popular","Upcoming"]
+        const genres = ["Now_Playing","Top_Rated","Popular","Upcoming"]
         const {itemSelectedValue} = this.props
         return genres.map((element, key) => (
             <TouchableHighlight 
                 key={key}
                 style={element == itemSelectedValue ? [styles.items, styles.itemSelected]: styles.noSelectedItems}
-                onPress={() => this.props.itemSelected(element)}    
+                onPress={() => this.gotoPath(element) }    
             >
                 <Text style={styles.text}>{element}</Text>
             </TouchableHighlight>

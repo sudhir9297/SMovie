@@ -1,17 +1,11 @@
 import React, {Component} from 'react'
 import {
   View,
-  Text,
-  Image,
   TouchableWithoutFeedback,
-  StyleSheet,
   FlatList,
-  ScrollView,Dimensions
+  ScrollView,
 } from 'react-native';
 import ItemView from '../Component/itemContainer.component'
-const {width, height} = Dimensions.get('window')
-
-
 
 class ListConstainer extends Component{
     renderItem=(item,navigate)=>{

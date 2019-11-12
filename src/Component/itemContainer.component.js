@@ -3,12 +3,10 @@ import {
   View,
   Text,
   Image,
-  TouchableWithoutFeedback,
   StyleSheet
 } from 'react-native';
 import Stars from 'react-native-stars';
 import Icon from 'react-native-vector-icons/FontAwesome'
-
 imgURL= 'http://image.tmdb.org/t/p/original'
 
 const ItemView=(items)=>{

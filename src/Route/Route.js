@@ -1,8 +1,7 @@
 import Home from '../Pages/Home.Page'
 import Details from  '../Pages/Detail.Page'
 import Search from '../Pages/Search.Page'
-import VideoPlayer from '../Pages/VideoPlayer.Page'
-
+import ViewAll from '../Pages/ViewAll.Page'
 const Route={
     Home: {
         screen: Home, 
@@ -22,13 +21,12 @@ const Route={
             header: false
         })
     },
-    VideoPlayer: {
-        screen: VideoPlayer,
+    ViewAll: {
+        screen: ViewAll,
         navigationOptions: ({navigation}) => ({
             header: false
         })
     },
+   
 }
-
-
 export default Route;

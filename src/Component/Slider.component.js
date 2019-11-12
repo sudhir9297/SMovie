@@ -3,14 +3,14 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text,
+
   StyleSheet,
   Image,
   Dimensions
 } from 'react-native';
 import Swiper from 'react-native-swiper'
-const {width} = Dimensions.get('window')
 
+//for Image stuff
 imgURL= 'http://image.tmdb.org/t/p/original'
 
 const Slider_View=props=>(
@@ -27,6 +27,7 @@ export default class Slider extends Component {
     }
   }
 
+  //fetching image data
   componentDidMount(){
     fetch('https://api.themoviedb.org/3/trending/movie/day?api_key=a4433b1b0534ad5410c7b737b6530f47')
     .then(res=>res.json())
