@@ -39,7 +39,13 @@ Make Sure you Have the following things Installed on your Machines.
  now just open the expo app in your ios or Android and login .....the Scan the QR code opened on your Web browser.
 
 Enjoy!
-  
+
+####Stuff you can do to improve
+- as images we're fetching are high resolution you can pass through the imageResizer reactnative plugin 
+- Lock orientation to portrait mode
+- add Video Player to play trailer of the movie and lock its orientation to default
+
+As Expo have its own Limitation Regarding certain dependencies for Video and Orientation copy this code and build using react-native-cli  
 
 
 
