@@ -1,6 +1,12 @@
 # SMovie
 A movie app UI built using React native.Its fetching the Data from TheMovieDb API.
 
+<p align="center">
+ <img  src="https://user-images.githubusercontent.com/19578447/69011816-89354180-0994-11ea-92fb-7abafcca0d97.png" width="200">
+ <img  src="https://user-images.githubusercontent.com/19578447/69011818-89cdd800-0994-11ea-8fb5-2da6464ac099.png" width="200">
+ <img  src="https://user-images.githubusercontent.com/19578447/69011817-89354180-0994-11ea-86da-3e15ef129604.png" width="200">
+</p> 
+
 ### Functionality this App Includes are
 - Automatic Fetching based on Trending, popular, upcoming etc
 - Searching based on Keyword
