@@ -1,5 +1,5 @@
 # SMovie
-A movie app UI built using React native.It fetching the Data from TheMovieDb API.
+A movie app UI built using React native.Its fetching the Data from TheMovieDb API.
 
 <p align="center">
  <img  src="https://user-images.githubusercontent.com/19578447/68879365-32640980-0701-11ea-8243-4cfcb8328063.jpg" width="200">
