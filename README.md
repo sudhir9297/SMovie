@@ -40,7 +40,7 @@ Make Sure you Have the following things Installed on your Machines.
 
 Enjoy!
 
-####Stuff you can do to improve
+#### Stuff you can do to improve
 - as images we're fetching are high resolution you can pass through the imageResizer reactnative plugin 
 - Lock orientation to portrait mode
 - add Video Player to play trailer of the movie and lock its orientation to default
