@@ -5,7 +5,11 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "preinstall": "npx npm-force-resolutions"
+  },
+  "resolutions": {
+    "minimist": "^1.2.5"
   },
   "dependencies": {
     "expo": "^35.0.0",
@@ -16,15 +20,16 @@
     "react-native-gesture-handler": "~1.3.0",
     "react-native-screens": "^1.0.0-alpha.23",
     "react-native-side-menu": "^1.1.3",
-    "react-native-stars": "^1.1.6",
-    "react-native-swiper": "^1.5.14",
+    "react-native-stars": "^1.2.1",
+    "react-native-swiper": "^1.6.0",
     "react-native-vector-icons": "^6.6.0",
     "react-native-web": "^0.11.7",
-    "react-navigation": "^4.0.10",
+    "react-navigation": "^4.3.7",
     "react-navigation-stack": "^1.10.3"
   },
   "devDependencies": {
-    "babel-preset-expo": "^7.1.0"
+    "babel-preset-expo": "^7.1.0",
+    "minimist": "^1.2.5"
   },
   "private": true
 }
